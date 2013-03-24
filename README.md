@@ -1,8 +1,8 @@
-This is a simple i2c/twi slave implementation using
-the USI module found on several attiny models.
+This is a simple I2C/TWI slave implementation using
+the USI module found on several ATtiny models.
 
-It has been loosely based on work by Atmel (Application
-Note 312) and work by Donald Blake (several fixes to
+It has been loosely based on work by Atmel [(Application
+Note 312)](http://www.atmel.com/Images/doc2560.pdf) and [work by Donald Blake](http://codalyze.googlecode.com/svn-history/r294/cyz_rgb/trunk/usiTwi/) (several fixes to
 the Atmel code, these are included in this code).
 
 I have found a few other situations that would cause
@@ -31,7 +31,7 @@ Differences to existing code (by Atmel and Donald Blake):
  - Added support for a few newer attiny devices
  - Added support for USI bus on port A when using attiny*61
 	devices (this is a library compile time option though,
-	because it MUST work with #defines). Add -DUSI_ON_PORT_A
+	because it MUST work with `#defines`). Add `-DUSI_ON_PORT_A`
 	in the Makefile to the "CFLAGS" section to enable it.
  - Last but not least: support for "complete" transactions,
  	i.e. start-data-stop and act upon it, instead of waiting
@@ -44,11 +44,11 @@ Differences to existing code (by Atmel and Donald Blake):
 	see below).
 
 Usage is quite simple: in your main loop, after all initialisations
-are done, call usi_twi_slave(slave_address, use_sleep, data_callback,
-idle_callback) where slave_address is you slave's requested address,
-use_sleep is != 0 if it's okay to sleep when idle (save's a few
+are done, call `usi_twi_slave(slave_address, use_sleep, data_callback,
+idle_callback)` where `slave_address` is you slave's requested address,
+`use_sleep` is != 0 if it's okay to sleep when idle (save's a few
 milliWatts, but causes the idle callback to be called rather less
-frequent, don't use it if you depend on the idle callback) and callback
+frequent, don't use it if you depend on the idle callback) and `callback`
 is a pointer to a function that is called when a stop condition occurs
 after a valid transaction has been completed. Your callback should be
 defined like this (see header file as well):
